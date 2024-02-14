@@ -5,6 +5,8 @@ import { UserContext } from "../context/UserContext";
 
 import ErrorMessage from "./ErrorMessage";
 
+import { backend_url } from "../config";
+
 const Navbar = ({ title }) => {
 
   const [token, setToken] = useContext(UserContext);
@@ -17,6 +19,8 @@ const Navbar = ({ title }) => {
     console.log('Current location is ', location);
   }, [location]);
 
+
+  
   const submitLogout = async () => {
     const requestOptions = {
       method: "POST",
@@ -26,7 +30,7 @@ const Navbar = ({ title }) => {
       },
     };
 
-    const response = await fetch("http://127.0.0.1:56000/auth/logout", requestOptions);
+    const response = await fetch(`${backend_url}auth/logout`, requestOptions);
 
     if (response.ok === false) {
       const data = await response.json();
@@ -37,6 +41,8 @@ const Navbar = ({ title }) => {
     }
   };
 
+
+
   const submitPass = async () => {
     const requestOptions = {
       method: "GET",
@@ -46,7 +52,7 @@ const Navbar = ({ title }) => {
       },
     };
 
-    const response = await fetch("http://127.0.0.1:56000/pass", requestOptions);
+    const response = await fetch(`${backend_url}pass`, requestOptions);
     const data = await response.json();
     if (response.ok === false) {
       setErrorMessage(data.detail)

@@ -7,6 +7,7 @@ import CreateSession from "./CreateSession";
 import LoadPhoto from "./LoadPhoto";
 
 import { UserContext } from "../context/UserContext";
+import { backend_url } from "../config";
 
 const MainPage = () => {
     const [message, setMessage] = useState("");
@@ -19,7 +20,7 @@ const MainPage = () => {
                 "Content-Type": "application/json",
             },
         };
-        const response = await fetch("http://127.0.0.1:56000/welcome", requestOptions);
+        const response = await fetch(`${backend_url}welcome`, requestOptions);
         const data = await response.json();
 
         if (response.ok === false) {

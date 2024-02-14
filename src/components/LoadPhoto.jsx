@@ -4,7 +4,7 @@ import { UserContext } from "../context/UserContext";
 import ErrorMessage from "./ErrorMessage";
 import SuccessMessage from "./SuccessMessage";
 
-
+import { backend_url } from "../config";
 
 const LoadPhoto = () => {
 
@@ -25,7 +25,7 @@ const LoadPhoto = () => {
             },
             body: fileInputFormData,
         };
-        const response = await fetch("http://127.0.0.1:56000/photo", requestOptions);
+        const response = await fetch(`${backend_url}photo`, requestOptions);
         const data = await response.json();
         console.log('Load Photo', data);
         if (!response.ok) {

@@ -4,6 +4,8 @@ import { UserContext } from "../context/UserContext";
 import ErrorMessage from "./ErrorMessage";
 import SuccessMessage from "./SuccessMessage";
 
+import { backend_url } from "../config";
+
 const CreateSession = () => {
     const [name, setName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -28,7 +30,7 @@ const CreateSession = () => {
             body: JSON.stringify({ name: name, last_name: lastName, surname: surname, first_corp_number: firstCorpNumber, second_corp_number: secondCorpNumber }),
         };
 
-        const response = await fetch("http://127.0.0.1:56000/session", requestOptions);
+        const response = await fetch(`${backend_url}session`, requestOptions);
         const data = await response.json();
         console.log('Create Session', data);
         if (!response.ok) {
@@ -91,6 +93,7 @@ const CreateSession = () => {
                         />
                     </div>
                 </div>
+
                 <div className="field">
                     <label className="label">Surname</label>
                     <div className="control">
@@ -104,6 +107,7 @@ const CreateSession = () => {
                         />
                     </div>
                 </div>
+
                 <div className="field">
                     <label className="label">First Corp Number</label>
                     <div className="control">
@@ -117,6 +121,7 @@ const CreateSession = () => {
                         />
                     </div>
                 </div>
+
                 <div className="field">
                     <label className="label">Second Corp Number</label>
                     <div className="control">
@@ -130,6 +135,7 @@ const CreateSession = () => {
                         />
                     </div>
                 </div>
+                
                 <ErrorMessage message={errorMessage} />
                 <SuccessMessage message={succesMessage} />
                 <br />

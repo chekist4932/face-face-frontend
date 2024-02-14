@@ -2,11 +2,15 @@ import React, { useState, useContext } from "react";
 import ErrorMessage from "./ErrorMessage";
 import { UserContext } from "../context/UserContext";
 
+import { backend_url } from "../config";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [, setToken] = useContext(UserContext);
+
+
 
   const submitLogin = async () => {
     const requestOptions = {
@@ -17,7 +21,8 @@ const Login = () => {
       ),
     };
 
-    const response = await fetch("http://127.0.0.1:56000/auth/login", requestOptions);
+    const response = await fetch(`${backend_url}auth/login`, requestOptions);
+    // const response = await fetch("http://127.0.0.1:56000/auth/login", requestOptions);
     const data = await response.json();
     console.log('Login', data)
     if (response.ok === false) {

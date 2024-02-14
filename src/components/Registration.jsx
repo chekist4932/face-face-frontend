@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import ErrorMessage from "./ErrorMessage";
 import SuccessMessage from "./SuccessMessage";
 
-
+import { backend_url } from "../config";
 
 const Registration = () => {
 
@@ -23,7 +23,7 @@ const Registration = () => {
             body: JSON.stringify({ email: email, password: password, username: username}),
         };
 
-        const response = await fetch("http://127.0.0.1:56000/auth/register", requestOptions);
+        const response = await fetch(`${backend_url}auth/register`, requestOptions);
         const data = await response.json();
         console.log('Registration', data);
         if (!response.ok) {
