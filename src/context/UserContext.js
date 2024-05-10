@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
+import { backend_url } from "../config";
 
 export const UserContext = createContext();
 
@@ -14,7 +15,7 @@ export const UserProvider = (props) => {
                 },
             };
 
-            const response = await fetch("http://127.0.0.1:56000/users/me", requestOptions);
+            const response = await fetch(`${backend_url}users/me`, requestOptions);
             console.log(`UserContext`, response.json());
             if (response.ok === false) {
                 setToken(null);
